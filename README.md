@@ -11,6 +11,6 @@ Test my code [here]()
 Simple Weather Dashboard that retrieves data from Open Weathers API and to use to geneate an application that retrieves weather data for cities and save events for each hour of the day. The app runs in the browser and features dynamically updated HTML and CSS powered by jQuery. Moment.js library is used to work the current date and time.
 
 Screenshot
-![Image description]()
+![Image description](g)
 
 Made with API, JS, HTML, CSS, Moment.js, JQuery by Claire Vandenberg, 2020

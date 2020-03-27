@@ -7,19 +7,84 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Weather Dashboard</title>
   <!-- Bootstrap CSS CDN  -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
-</head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
 
+</head>
 
 <body>
 
+    <!-- Header -->
+<div class="jumbotron" class = "fluid-container">
+    <h1>Weather Dashboard</h1>      
+    </div>
 
+    <!-- SideNav -->
+<div class="fluid-container">
+    <div class="col-sm-2 sidenav">
+    <div class="list-group">
+      <a href="#" class="list-group-item active">Melbourne</a>
+      <a href="#" class="list-group-item">Sydney</a>
+      <a href="#" class="list-group-item">Adelaide</a>
+      <a href="#" class="list-group-item">Brisbane</a>
+      <a href="#" class="list-group-item">Melbourne</a>
+      <a href="#" class="list-group-item">Perth</a>
+      <a href="#" class="list-group-item">Darwin</a>
+      <a href="#" class="list-group-item">Tasmania</a>
+    </div>
+  </div>
 
+    <!-- Weather City -->
+    <div class="fluid-container">
+    <div class="col-sm-9 text-left"> 
+    <div class="well well-lg">Weather</div>
+    </div> 
+    <hr>
 
+    <!-- 5 Days of Weather City -->
+    <div class="fluid-container">
+    <div class="col-sm-9 text-left"> 
+    <div class="row">
+    <div class="well well-lg"><h1>5 Day Forcast</div>
+    </div> 
+   
+    <div class="card-deck">
+    <div class="card bg-primary">
+    <div class="card-body text-center">
+    <p class="card-text"></p>
+    </div>
+    </div>
 
-<!-- jQuery JS -->
+    <div class="card bg-warning">
+    <div class="card-body text-center">
+    <p class="card-text"></p>
+    </div>
+    </div>
+
+    <div class="card bg-success ">
+    <div class="card-body text-center">
+    <p class="card-text"></p>
+    </div>
+    </div>
+
+    <div class="card bg-danger">
+    <div class="card-body text-center">
+    <p class="card-text"></p>
+    </div>
+    </div>
+
+    <div class="card bg-light">
+    <div class="card-body text-center">
+    <p class="card-text"></p>
+    </div>
+    </div>
+      
+
+ <!-- jQuery JS -->
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <!-- Code to the JavaScript File -->
   <script src="script.js"></script>
 
