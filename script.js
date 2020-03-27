@@ -45,6 +45,7 @@ if (getUVIndex.result.uv <6){
     uvClass = "uvHigh";
 }
 console.log(getUVIndex);
+console.log(uvLow);
 // error: function (uvIndex) {
 //     console.log(uvIndex)
 //   }
