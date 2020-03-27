@@ -19,3 +19,36 @@ method: "GET"
 })
 }
 
+// UV Index
+function getUVIndex() {
+    var lat = $('#lat').val();
+    var lng = $('#lng').val();
+    var alt = $('#alt').val();
+    var ozone = $('#ozone').val();
+    var dt = $('#dt').val();
+   
+    $.ajax({
+      type: 'GET',
+      dataType: 'json',
+      beforeSend: function(request) {
+        request.setRequestHeader('x-access-token', 'a694de294a03ceef2b09ce2aa14f9002');
+      },
+      url: 'https://api.openuv.io/api/v1/uv?lat=' + lat + '&lng=' + lng + '&alt=' + alt + '&ozone=' + ozone + '&dt=' + dt,
+      success: function(response) {
+        //handle successful response
+      },
+      error: function(response) {
+        // handle error response
+      }
+    });
+    
+// Button Color based on UV Index
+if (getUVIndex.result.uv <3){
+    var uvClass = "uvLow";
+} else {
+if (getUVIndex.result.uv <6){
+    uvClass = "uvMed";
+} else {
+    uvClass = "uvHigh";
+}
+   }

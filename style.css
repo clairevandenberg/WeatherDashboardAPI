@@ -1,0 +1,11 @@
+.uvLow {
+    background-color: blue;
+}
+
+.uv.Med {
+    background-color: yellow;
+}
+
+.uv.High{
+    background-color: red;
+}
