@@ -1,23 +1,46 @@
 //search bar
 $("#searchBar").on("submit", function () {
-    event.preventDefault ();
-    getOpenWeather($("#search").val());
+    e.preventDefault ();
+    const inputVal = input.value;
 });
 
+let inputEl = document.querySelector(".input");
+let buttonEl = document.querySelector(".button")
+const queryAPI = () => {
+    let queryParam = inputEl.vale;
+    console.log (queryParam);
+}
 //Fetching API data on weatherHistory
 function getOpenWeather (weatherPerCity) {
-let  cityName = weatherPerCity;
-let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=2a41be6b56e8918bc7efe98c840f4638";
+let  cityName = weatherPerCity.value
+let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${apiKey}&units=metric`;
+console.log(queryURL);
+console.log("Test");
+
 $.ajax ({
 url: queryUrl,
-method: "GET"
-.done (function (response) {
-    console.log(repsonse);
-    console.log(response-Runtime);
-    weatherHistory(cityName, reponse);
-})
-})
+method: "GET",
+success: (reponse) => {
+    console.log(reponse);
+},
+error: (xhr, status, error) => {
+    console.log(`status: ${status}, Error: ${error}`);
 }
+})
+.catch(() => {
+    msg.textContnt = " ";
+    form.reset();
+    input.focus();
+});
+
+buttonEl.addEventListener("click", queryAPI);
+
+// .done (function (reponse) {
+//     console.log(response);
+//     console.log(response-Runtime);
+//     weatherHistory(cityName, reponse);
+}
+
 
 // UV Index
 function getUVIndex() {
@@ -35,6 +58,8 @@ function getUVIndex() {
       },
       url: 'https://api.openuv.io/api/v1/uv?lat=' + lat + '&lng=' + lng + '&alt=' + alt + '&ozone=' + ozone + '&dt=' + dt,
       success: function(uvIndex) {
+
+        
 //handle successful response = Button Color based on UV Index
 if (getUVIndex.result.uv <3){
     var uvClass = "uvLow";
@@ -51,12 +76,23 @@ console.log(uvLow);
 //   }
 }
 }
-})
-}
+});
+};
 
 //Current day and time 
 var currentDate = moment().format('dddd, MMMM Do YYYY, h:mm a')
 console.log(currentDate);
 
+// current city cordinates 
+let CurrentCityCordinates = {lat: "-37.81", lon: "144.96"};
+
 //weather per city
 var capitalCities = "Sydney Adelaide Melbourne Perth Hobart Brisbane Darwin";
+
+// retreiving weather via loop to generate 5 days worth of weather
+function weatherForcast (location, recivedData) {
+    $("#forecast").empty()
+for (var i = 0; i< 5; i++) {
+   $("#forcast").append(cards);
+}
+}
