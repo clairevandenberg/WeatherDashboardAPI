@@ -96,3 +96,27 @@ for (var i = 0; i< 5; i++) {
    $("#forcast").append(cards);
 }
 }
+
+cityBtn.on("click", fucntion(event){
+    event.preventDefault();
+    if (input === "Adelaide"){
+        var APIkey " "
+    }
+};
+
+// // retreiving weather data
+// const listItems = list.querySelectorAll (".ajax-section.city");
+// const listItemsArray = Array.from(listItems);
+
+// if (listemItemsArray.length > 0) {
+//     const filterdArray = listItemArray.filter(el => {
+//         let content = "";
+//         if (inputVal.includes(",")[1].length >2) {
+//             inputVal = inputVal.split(",")[0];
+//             content = el.querySelector (".city-name span").textContent.toLowerCase();
+//         } else {
+//             content = el.querySelector(".city-name").dataset.name.toLowerCase ();
+//         }
+//         return content == inoutVal.toLowerCase();
+// })
+// };
