@@ -30,7 +30,7 @@ margin-top: 2%;margin-left: 2%; margin-right: 2%; margin-bottom: 2%;
     width: 100%;
 }
 
-.col-sm-2 {
+.col-sm-4 {
     background-color: lightblue;
 } 
 
@@ -47,4 +47,8 @@ margin-top: 2%;margin-left: 2%; margin-right: 2%; margin-bottom: 2%;
 .card-body {
     background-color:  blue;
     height: 200px
+}
+.card-text {
+    font-size: small;
+    text-align: left;
 }

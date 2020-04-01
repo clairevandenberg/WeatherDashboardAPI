@@ -105,7 +105,29 @@ for (i = 1; i > 5 ; i++) {
 }
 
 
+// Local Storage Searched cities
+//call functuion 
+renderLastRegistered ();
 
+ // fucntion 
+fucntion renderLastRegistered() {
+var searchBar = localStorage.getItem("searchBtn");
+
+if searchBar === null) {
+    return; 
+}
+
+search.textContent = city;
+
+searchBtn.addEventListener("click", function(event){
+    event.preventDefault();
+
+var searchBar = document.querySelector("#searchbtn").value;
+
+localStorage.setItem("searchBar", Search);
+renderLastRegistered ();
+})
+};
 
 // // Pesudo Code
 // Search Bar 
