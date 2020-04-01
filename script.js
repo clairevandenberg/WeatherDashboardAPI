@@ -54,14 +54,14 @@ $("#submitBtn").on("submit", function (e) {
 // });
 
 
-const queryAPI = () => {
-    let queryParam = inputEl.vale;
-    console.log (queryParam);
-}
+// const queryAPI = () => {
+//     let queryParam = inputEl.vale;
+//     console.log (queryParam);
+// }
 
 //Fetching API data on weatherHistory
 function getOpenWeather (cityName) {
-    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=fe991547b0b791499b6ebb2c115c9743&units=metric";
+    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=fe991547b0b791499b6ebb2c115c9743&units=metric"
     console.log(queryURL);
     console.log("Test");
 
@@ -110,13 +110,16 @@ function getOpenWeather (cityName) {
         });
     }).then(uv => {
     console.log(uv);
-    })
+    
+    fillUv(uv);
+    });
+}
     
     //store data in an object 
-    .then(function(forecast) {
-        console.log(forecast);
-    console.log(queryURL);
-    console.log(response);
+    // .then(function(forecast) {
+    // console.log(forecast);
+    // console.log(queryURL);
+    // console.log(response);
 
     
     // // Displaying data retreived from Open Weather API to HTML
@@ -125,26 +128,26 @@ function getOpenWeather (cityName) {
     // $(".humidity").text("Humidity: " + response.main.humidity);
 
     // transfer to fahrenheit
- var temperatureF = (response.main.temp -273.15) * 1.80 + 32;
+//  var temperatureF = (response.main.temp -273.15) * 1.80 + 32;
 
-    console.log("wind Speed: " + response.wind.speed);
-    console.log("Humidity: " + response.main.humidity);
-    console.log("Temperature: " + temperatureF);
-    })
+//     console.log("wind Speed: " + response.wind.speed);
+//     console.log("Humidity: " + response.main.humidity);
+//     console.log("Temperature: " + temperatureF);
+//     })
 
-// DATES retreiving 5 DAYS using moment 
-function dates () {
-    // today 
-    var today = moment().format('dddd, MMMM Do YYYY, h:mm a')
-    console.log(date.format("DD MMM Y"));
-    //loop for 5 days
-for (let i = 0; i > 4 ; i++) {
-    fiveDays [i] = moment().add(i).format ('DD MMM Y')
-    $(".date" + i).text('cards${i}');
-    console.log()
-}
-}
-}
+// // DATES retreiving 5 DAYS using moment 
+// function dates () {
+//     // today 
+//     var today = moment().format('dddd, MMMM Do YYYY, h:mm a')
+//     console.log(date.format("DD MMM Y"));
+//     //loop for 5 days
+// for (let i = 0; i > 4 ; i++) {
+//     fiveDays [i] = moment().add(i).format ('DD MMM Y')
+//     $(".date" + i).text('cards${i}');
+//     console.log()
+// }
+// }
+// }
 
 function fillPageCurent (current) {
  // Displaying data retreived from Open Weather API to HTML
@@ -160,155 +163,36 @@ function fillPageCurent (current) {
 
 function fillPageForecast(forecast) {
 
-    
-var savedWeather = (forecast.list);
+var savedWeather = forecast.list;
 console.log(savedWeather);
-for (let i = 0; i < 5 ; i++) {
+for (let i = 0; i < 3 ; i++) {
     //saving time into variable 
-    let forecastDate = moment().add(i);
+    let forecastDate = moment().add(i + 1, "days").hours(15).minute(0);
+    console.log(forecastDate);
+    let dateEl= document.getElementById(`date${i}`);
+    let temperature= document.getElementById(`temperature${i}`);
+    let humidity= document.getElementById(`humidity${i}`);    
+
+for (let j = 0; j < savedWeather.length ; j++){
+  console.log(savedWeather[j]);
+  if (forecastDate.isBefore (moment.utc(savedWeather[j].dt * 1000))){
+
+    dateEl.innerText = moment.utc(savedWeather[j].dt * 1000).format("DD MMM Y");
+    temperature.innerText = savedWeather[j].main.temp;
+  humidity.innerText = savedWeather[j].main.humidity;
+    break;
+
+  }
+}
 
 
-    
-let dateEl= document.getElementById(`dateEl${i}`);
-let temperature= document.getElementById(`temperature${i}`);
-let humidity= document.getElementById(`humidity${i}`);
-
-$(".date0").text("<h1>" + date.format(" DD MMM Y"));
-$(".temperature0").text("Humidity: " + current.main.humidity);
-$(".humidity0").text("Temperature: " + current.main.temp);
+// $(".date0").text("<h1>" + date.format(" DD MMM Y"));
+// $(".temperature0").text("Humidity: " + current.main.humidity);
+// $(".humidity0").text("Temperature: " + current.main.temp);
 }
 }
 
-
-// displaying Weather on todays weather 
-// var cityForecast = response(); 
-
-// console.log(cityForecast);
-
-// function ForecastPerCity() {
-// let today= document.getElementById(`today`);
-// console.log(today);
-// today.innerText = cityForecast[i];
-
-// }
-// }
-// cityForecast();
-
-
-
-// // Pesudo Code
-// Search Bar 
-// Fetch API = console.log(test)
-// Current City Weather = Console.log(current)
-// Forecast Data = Console.log(Forecast)
-// UV Forecast = Console.log(UV)
-
-// Request Adelaide in Search Bar 
-// Get Current Day 
-// temp 
-// UV index
-// Humidity 
-// Wind speed
-// Get 5 day forecast on 5 SVGPathSegCurvetoQuadraticSmoothAbs. Current Date Temp Humidity Image. 
-
-
-
-
-
-
-
-
-
-
-    // .catch(() => {
-    //     msg.textContnt = " ";
-    //     form.reset();
-    //     input.focus();
-    // });
-
-    // buttonEl.addEventListener("click", queryAPI);
-
-    // .done (function (reponse) {
-    //     console.log(response);
-    //     console.log(response-Runtime);
-    //     weatherHistory(cityName, reponse);
-
-
-
-// // UV Index
-// function getUVIndex() {
-//     var lat = $('#lat').val();
-//     var lng = $('#lng').val();
-//     var alt = $('#alt').val();
-//     var ozone = $('#ozone').val();
-//     var dt = $('#dt').val();
-   
-//     $.ajax({
-//         type: 'GET',
-//         dataType: 'json',
-//         beforeSend: function(request) {
-//             request.setRequestHeader('x-access-token', 'fe991547b0b791499b6ebb2c115c9743');
-//         },
-//         // url: "https://api.openweathermap.org/data/2.5/forcast/uv?lat=" + lat + "&lon=" + lon + "appid=fe991547b0b791499b6ebb2c115c9743"
-//         url: 'https://api.openuv.io/api/v1/uv?lat=' + lat + '&lng=' + lng + '&alt=' + alt + '&ozone=' + ozone + '&dt=' + dt,
-//         success: function(response) {
-//             console.log(response);
-//             console.log(response.data.results[0].value);
-//             //handle successful response = Button Color based on UV Index
-//             if (getUVIndex.result.uv <3){
-//                 var uvClass = "uvLow";
-//             } else {
-//             if (getUVIndex.result.uv <6){
-//                 uvClass = "uvMed";
-//             } else {
-//                 uvClass = "uvHigh";
-//             }
-//             console.log(getUVIndex);
-//             console.log(uvLow);
-//             // error: function (uvIndex) {
-//             //     console.log(uvIndex)
-//             //   }
-//             }
-//         }
-//     });
-// }
-
-// //Current day and time 
-// var currentDate = moment().format('dddd, MMMM Do YYYY, h:mm a')
-// console.log(currentDate);
-
-// // current city cordinates 
-// let CurrentCityCordinates = {lat: "-37.81", lon: "144.96"};
-
-// //weather per city
-// var capitalCities = "Sydney Adelaide Melbourne Perth Hobart Brisbane Darwin";
-
-// // retreiving weather via loop to generate 5 days worth of weather
-// function weatherForcast (location, recivedData) {
-//     $("#forecast").empty()
-//     for (var i = 0; i< 5; i++) {
-//         $("#forcast").append(cards);
-//     }
-// }
-
-// cityBtn.on("click", function(event){
-//     event.preventDefault();
-//     if (input === "Adelaide"){
-//         var APIkey = " ";
-//     }
-// });
-
-// // // retreiving weather data
-// // const listItems = list.querySelectorAll (".ajax-section.city");
-// // const listItemsArray = Array.from(listItems);
-
-// // if (listemItemsArray.length > 0) {
-// //     const filterdArray = listItemArray.filter(el => {
-// //         let content = "";
-// //         if (inputVal.includes(",")[1].length >2) {
-// //             inputVal = inputVal.split(",")[0];
-// //             content = el.querySelector (".city-name span").textContent.toLowerCase();
-// //         } else {
-// //             content = el.querySelector(".city-name").dataset.name.toLowerCase ();
-// //         }
-// //         return content == inoutVal.toLowerCase();
+function fillUv(uvResponse) {
+console.log("test");
+document.querySelector(".uvResponse").innerText = " UV Index: " + uvResponse [0].value;
+}
