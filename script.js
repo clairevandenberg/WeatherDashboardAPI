@@ -1,5 +1,5 @@
 "use strict";
-// @ts-check
+// @ts-checkl
 
 let inputEl = document.querySelector("#searchInput");
 let buttonEl = document.querySelector(".button")
@@ -11,7 +11,9 @@ getOpenWeather("Adelaide");
 $("#searchBar").on("submit", function (e) {
     e.preventDefault ();
     getOpenWeather(inputEl.value);
-});
+    return getOpenWeather
+    }); 
+
 
 const queryAPI = () => {
     let queryParam = inputEl.vale;
@@ -40,7 +42,7 @@ function getOpenWeather (cityName) {
         // get forecast by city-id
         return $.ajax({
             type: 'GET',
-            url: "//forecast"
+            url: "api.openweathermap.org/data/2.5/forecast?" + cityName + "&appid={fe991547b0b791499b6ebb2c115c9743}"
         })
     })
     .then(forecast => {
@@ -54,14 +56,13 @@ function getOpenWeather (cityName) {
         // current weather data.
         console.log(forecast);
         console.log(forecast.city.coord);
-        // { lat, lon }
         
-        // {lon: 138.6, lat: -34.93}
+        // ADELAIDE {lon: 138.6, lat: -34.93}
         
         // Request UV forcast for 5 days by lat/lon
         return $.ajax({
             type: 'GET',
-            url: "//UV/URL" + forecast.city.coord.lat,
+            url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid={appid}&lat={lat}&lon={lon}&cnt={cnt}" + forecast.city.coord.lat,
         })
     })
     .then(uv => {
@@ -69,6 +70,25 @@ function getOpenWeather (cityName) {
         console.log(uv);
     })
     
+    //store datat in an object 
+    .then(function(response) {
+    console.log(queryURL);
+    console.log(response);
+
+    // Displaying data retreived from Open Weather API to HTML
+    $(".cityName").html("<h1>" + response.name + date);
+    $(".wind").text("Wind Speed: " + response.wind.speed);
+    $("humidity").text("Humidity: " + response.main.humidity);
+
+    // transfer to fahrenheit
+    var temperatureF = (response.main.temp -273.15) * 1.80 + 32;
+
+    console.log("wind Speed: " + response.wind.speed);
+    console.log("Humidity: " + response.main.humidity);
+    console.log("Temperature: " + temperatureF);
+    });
+
+
     // .catch(() => {
     //     msg.textContnt = " ";
     //     form.reset();
@@ -81,85 +101,83 @@ function getOpenWeather (cityName) {
     //     console.log(response);
     //     console.log(response-Runtime);
     //     weatherHistory(cityName, reponse);
-}
 
 
-// UV Index
-function getUVIndex() {
-    var lat = $('#lat').val();
-    var lng = $('#lng').val();
-    var alt = $('#alt').val();
-    var ozone = $('#ozone').val();
-    var dt = $('#dt').val();
+
+// // UV Index
+// function getUVIndex() {
+//     var lat = $('#lat').val();
+//     var lng = $('#lng').val();
+//     var alt = $('#alt').val();
+//     var ozone = $('#ozone').val();
+//     var dt = $('#dt').val();
    
-    $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        beforeSend: function(request) {
-            request.setRequestHeader('x-access-token', 'a694de294a03ceef2b09ce2aa14f9002');
-        },
-        // url: "https://api.openweathermap.org/data/2.5/forcast/uv?lat=" + lat + "&lon=" + lon + "appid=fe991547b0b791499b6ebb2c115c9743"
-        url: 'https://api.openuv.io/api/v1/uv?lat=' + lat + '&lng=' + lng + '&alt=' + alt + '&ozone=' + ozone + '&dt=' + dt,
-        success: function(response) {
-            console.log(response);
-            console.log(response.data.results[0].value);
-            //handle successful response = Button Color based on UV Index
-            if (getUVIndex.result.uv <3){
-                var uvClass = "uvLow";
-            } else {
-            if (getUVIndex.result.uv <6){
-                uvClass = "uvMed";
-            } else {
-                uvClass = "uvHigh";
-            }
-            console.log(getUVIndex);
-            console.log(uvLow);
-            // error: function (uvIndex) {
-            //     console.log(uvIndex)
-            //   }
-            }
-        }
-    });
-}
-
-//Current day and time 
-var currentDate = moment().format('dddd, MMMM Do YYYY, h:mm a')
-console.log(currentDate);
-
-// current city cordinates 
-let CurrentCityCordinates = {lat: "-37.81", lon: "144.96"};
-
-//weather per city
-var capitalCities = "Sydney Adelaide Melbourne Perth Hobart Brisbane Darwin";
-
-// retreiving weather via loop to generate 5 days worth of weather
-function weatherForcast (location, recivedData) {
-    $("#forecast").empty()
-    for (var i = 0; i< 5; i++) {
-        $("#forcast").append(cards);
-    }
-}
-
-cityBtn.on("click", function(event){
-    event.preventDefault();
-    if (input === "Adelaide"){
-        var APIkey = " ";
-    }
-});
-
-// // retreiving weather data
-// const listItems = list.querySelectorAll (".ajax-section.city");
-// const listItemsArray = Array.from(listItems);
-
-// if (listemItemsArray.length > 0) {
-//     const filterdArray = listItemArray.filter(el => {
-//         let content = "";
-//         if (inputVal.includes(",")[1].length >2) {
-//             inputVal = inputVal.split(",")[0];
-//             content = el.querySelector (".city-name span").textContent.toLowerCase();
-//         } else {
-//             content = el.querySelector(".city-name").dataset.name.toLowerCase ();
+//     $.ajax({
+//         type: 'GET',
+//         dataType: 'json',
+//         beforeSend: function(request) {
+//             request.setRequestHeader('x-access-token', 'fe991547b0b791499b6ebb2c115c9743');
+//         },
+//         // url: "https://api.openweathermap.org/data/2.5/forcast/uv?lat=" + lat + "&lon=" + lon + "appid=fe991547b0b791499b6ebb2c115c9743"
+//         url: 'https://api.openuv.io/api/v1/uv?lat=' + lat + '&lng=' + lng + '&alt=' + alt + '&ozone=' + ozone + '&dt=' + dt,
+//         success: function(response) {
+//             console.log(response);
+//             console.log(response.data.results[0].value);
+//             //handle successful response = Button Color based on UV Index
+//             if (getUVIndex.result.uv <3){
+//                 var uvClass = "uvLow";
+//             } else {
+//             if (getUVIndex.result.uv <6){
+//                 uvClass = "uvMed";
+//             } else {
+//                 uvClass = "uvHigh";
+//             }
+//             console.log(getUVIndex);
+//             console.log(uvLow);
+//             // error: function (uvIndex) {
+//             //     console.log(uvIndex)
+//             //   }
+//             }
 //         }
-//         return content == inoutVal.toLowerCase();
-// })
-// };
+//     });
+// }
+
+// //Current day and time 
+// var currentDate = moment().format('dddd, MMMM Do YYYY, h:mm a')
+// console.log(currentDate);
+
+// // current city cordinates 
+// let CurrentCityCordinates = {lat: "-37.81", lon: "144.96"};
+
+// //weather per city
+// var capitalCities = "Sydney Adelaide Melbourne Perth Hobart Brisbane Darwin";
+
+// // retreiving weather via loop to generate 5 days worth of weather
+// function weatherForcast (location, recivedData) {
+//     $("#forecast").empty()
+//     for (var i = 0; i< 5; i++) {
+//         $("#forcast").append(cards);
+//     }
+// }
+
+// cityBtn.on("click", function(event){
+//     event.preventDefault();
+//     if (input === "Adelaide"){
+//         var APIkey = " ";
+//     }
+// });
+
+// // // retreiving weather data
+// // const listItems = list.querySelectorAll (".ajax-section.city");
+// // const listItemsArray = Array.from(listItems);
+
+// // if (listemItemsArray.length > 0) {
+// //     const filterdArray = listItemArray.filter(el => {
+// //         let content = "";
+// //         if (inputVal.includes(",")[1].length >2) {
+// //             inputVal = inputVal.split(",")[0];
+// //             content = el.querySelector (".city-name span").textContent.toLowerCase();
+// //         } else {
+// //             content = el.querySelector(".city-name").dataset.name.toLowerCase ();
+// //         }
+// //         return content == inoutVal.toLowerCase();
