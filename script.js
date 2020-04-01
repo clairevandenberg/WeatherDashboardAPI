@@ -6,6 +6,7 @@ let buttonEl = document.querySelector(".button")
 
 // DEBUG, DELETE ME LATER.
 getOpenWeather("Adelaide");
+date("current date");
 
 //search bar
 $("#searchBar").on("submit", function (e) {
@@ -65,28 +66,69 @@ function getOpenWeather (cityName) {
             url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid={appid}&lat={lat}&lon={lon}&cnt={cnt}" + forecast.city.coord.lat,
         })
     })
+
     .then(uv => {
-        // uv data
-        console.log(uv);
+    // uv data
+    console.log(uv);
     })
     
-    //store datat in an object 
+    //store data in an object 
     .then(function(response) {
     console.log(queryURL);
     console.log(response);
 
+    
     // Displaying data retreived from Open Weather API to HTML
     $(".cityName").html("<h1>" + response.name + date);
     $(".wind").text("Wind Speed: " + response.wind.speed);
-    $("humidity").text("Humidity: " + response.main.humidity);
+    $(".humidity").text("Humidity: " + response.main.humidity);
 
     // transfer to fahrenheit
-    var temperatureF = (response.main.temp -273.15) * 1.80 + 32;
+ var temperatureF = (response.main.temp -273.15) * 1.80 + 32;
 
     console.log("wind Speed: " + response.wind.speed);
     console.log("Humidity: " + response.main.humidity);
     console.log("Temperature: " + temperatureF);
-    });
+    })
+
+// DATES retreiving 5 DAYS using moment 
+function dates () {
+    // today 
+    var today = moment().format('dddd, MMMM Do YYYY, h:mm a')
+    console.log(date.format("DDD MMM Y"));
+    //loop for 5 days
+    let fiveDays = []
+for (i = 1; i > 5 ; i++) {
+    fiveDays [i] = moment().add(i).format ('DDD MMM Y')
+    $(".date" + i).text(fiveDays[i])
+}
+}
+
+
+
+
+// // Pesudo Code
+// Search Bar 
+// Fetch API = console.log(test)
+// Current City Weather = Console.log(current)
+// Forecast Data = Console.log(Forecast)
+// UV Forecast = Console.log(UV)
+
+// Request Adelaide in Search Bar 
+// Get Current Day 
+// temp 
+// UV index
+// Humidity 
+// Wind speed
+// Get 5 day forecast on 5 SVGPathSegCurvetoQuadraticSmoothAbs. Current Date Temp Humidity Image. 
+
+
+
+
+
+
+
+
 
 
     // .catch(() => {
