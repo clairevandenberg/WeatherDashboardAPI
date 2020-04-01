@@ -15,6 +15,30 @@ $("#searchBar").on("submit", function (e) {
     return getOpenWeather
     }); 
 
+// Local Storage Searched cities
+//call functuion 
+renderLastRegistered ();
+
+ // fucntion 
+function renderLastRegistered() {
+var searchBar = localStorage.getItem("searchBtn");
+
+if (searchBar === null) {
+    return; 
+}
+
+searchBar.textContent = city;
+
+searchBar.addEventListener("click", function(event){
+    event.preventDefault();
+
+var searchBar = document.querySelector("#searchBtn").value;
+
+localStorage.setItem("searchBar", Search);
+renderLastRegistered ();
+})
+};
+
 
 const queryAPI = () => {
     let queryParam = inputEl.vale;
@@ -43,7 +67,7 @@ function getOpenWeather (cityName) {
         // get forecast by city-id
         return $.ajax({
             type: 'GET',
-            url: "api.openweathermap.org/data/2.5/forecast?" + cityName + "&appid={fe991547b0b791499b6ebb2c115c9743}"
+            url: "api.openweathermap.org/data/2.5/forecast?" + cityName + "&appid=fe991547b0b791499b6ebb2c115c9743"
         })
     })
     .then(forecast => {
@@ -64,7 +88,7 @@ function getOpenWeather (cityName) {
         return $.ajax({
             type: 'GET',
             url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid={appid}&lat={lat}&lon={lon}&cnt={cnt}" + forecast.city.coord.lat,
-        })
+        });
     })
 
     .then(uv => {
@@ -97,37 +121,28 @@ function dates () {
     var today = moment().format('dddd, MMMM Do YYYY, h:mm a')
     console.log(date.format("DDD MMM Y"));
     //loop for 5 days
-    let fiveDays = []
-for (i = 1; i > 5 ; i++) {
+for (let i = 0; i > 4 ; i++) {
     fiveDays [i] = moment().add(i).format ('DDD MMM Y')
-    $(".date" + i).text(fiveDays[i])
+    $(".date" + i).text('cards${i}');
+    console.log()
 }
 }
 
+// displaying Weather on todays weather 
+// var cityForecast = response(); 
 
-// Local Storage Searched cities
-//call functuion 
-renderLastRegistered ();
+// console.log(cityForecast);
 
- // fucntion 
-fucntion renderLastRegistered() {
-var searchBar = localStorage.getItem("searchBtn");
+// function ForecastPerCity() {
+// let today= document.getElementById(`today`);
+// console.log(today);
+// today.innerText = cityForecast[i];
 
-if searchBar === null) {
-    return; 
-}
+// }
+// }
+// cityForecast();
 
-search.textContent = city;
 
-searchBtn.addEventListener("click", function(event){
-    event.preventDefault();
-
-var searchBar = document.querySelector("#searchbtn").value;
-
-localStorage.setItem("searchBar", Search);
-renderLastRegistered ();
-})
-};
 
 // // Pesudo Code
 // Search Bar 
