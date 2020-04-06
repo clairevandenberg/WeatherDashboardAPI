@@ -1,3 +1,55 @@
+@charset "utf-8";
+body {
+    background-color: darkcyan;
+}
+.card{
+    background-color: salmon;
+    height: auto;
+    font-size: 18px;
+    text-align: left;
+    width: auto;
+    padding: 3%;
+    color: white;
+    align-items: left;
+    margin: 1%;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: navajowhite;
+    color: darkcyan;
+    width: 100%;
+    height: 20px;
+    width: 100%;
+  }
+
+
+.list-group {
+    width: 100%;
+}
+
+.col-sm-4 {
+    width: 100%;
+    height: auto;
+    color: white;
+} 
+
+.col-sm-8 {
+    width: 100%;
+    height: 200px;
+    color: white;
+}
+
+.col-sm-12 {
+    color: darkcyan;
+    background-color: navajowhite; 
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
 .uvLow {
     background-color: green;
 }
@@ -8,47 +60,4 @@
 
 .uv.High{
     background-color: orange;
-}
-
-
-.containerfluid{
-margin-top: 2%;margin-left: 2%; margin-right: 2%; margin-bottom: 2%;
-}
-
-.submit {
-    background-color: blue
-    color: white;}
-
-.jumbotron {
-    text-align: center;
-    background-color: salmon;
-    color: black;
-    width: 100%;
-  }
-
-.list-group {
-    width: 100%;
-}
-
-.col-sm-4 {
-    background-color: cadetblue;
-} 
-
-.col-sm-8 {
-    background-color: slategray;
-    width: 100%;
-    height: 200px;
-}
-
-.list-group {
-    width: 150px;
-}
-
-.card-body {
-    background-color: salmon;
-    height: auto
-}
-.card-text {
-    font-size: small;
-    text-align: left;
 }
