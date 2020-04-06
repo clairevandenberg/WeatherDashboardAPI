@@ -61,3 +61,10 @@ body {
 .uv.High{
     background-color: orange;
 }
+
+.cityButtons {
+    background-color: pink;
+    padding: 2%;
+    width: 50%;
+   
+}

@@ -83,8 +83,9 @@ function getOpenWeather (cityName) {
         });
     }).then(uv => {
     console.log(uv);
-    
     fillUv(uv);
+
+    fillUv(uvResponse)
     });
 }
 
@@ -97,6 +98,7 @@ function fillPageCurent (current) {
  $(".wind").text("Wind Speed: " + current.wind.speed);
  $(".humidity").text("Humidity: " + current.main.humidity);
  $(".temperatureF").text("Temperature: " + current.main.temp);
+ $(".icon").text("Temperature: " + current.weather[0].icon);
 
 }
 
@@ -110,26 +112,40 @@ for (let i = 0; i < 4 ; i++) {
     console.log(forecastDate);
     let dateEl= document.getElementById(`date${i}`);
     let temperature= document.getElementById(`temperature${i}`);
-    let humidity= document.getElementById(`humidity${i}`);    
+    let humidity= document.getElementById(`humidity${i}`);  
+    let wind = document.getElementById(`wind${i}`);  
+    // let icon = document.getElementById(`icon${i}`);  
 
 for (let j = 0; j < savedWeather.length ; j++){
   console.log(savedWeather[j]);
   if (forecastDate.isBefore (moment.utc(savedWeather[j].dt * 1000))){
 
 dateEl.innerText = moment.utc(savedWeather[j].dt * 1000).format("DD MMM Y");
+// icon.innerText = savedWeather[j].weather[0].icon;
 temperature.innerText = "Temperature: "+savedWeather[j].main.temp;
 humidity.innerText = "Humidity: "+ savedWeather[j].main.humidity + " % ";
-    break;
+wind.innerText = "Wind Speed: "+savedWeather[j].wind.speed;
 
+    break;
   }
 }
 }
 }
 
+
 function fillUv(uvResponse) {
 console.log("test");
 document.querySelector(".uvResponse").innerText = " UV Index: " + uvResponse [0].value;
+
+for (let k = 0; k < 4 ; k++) {
+let uvResponse= document.getElementById(`fillUv${k}`);
+for (let k = 0; k < fillUv.length ; j++){
+uvResponse.innerText = "UV Index: "+ uvResponse [0].value;
 }
+}
+}
+
+
 
 // function fillUvForecast (value) {
 // var uvForecast = [k].value
