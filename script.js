@@ -165,7 +165,7 @@ function fillPageForecast(forecast) {
 
 var savedWeather = forecast.list;
 console.log(savedWeather);
-for (let i = 0; i < 3 ; i++) {
+for (let i = 0; i < 4 ; i++) {
     //saving time into variable 
     let forecastDate = moment().add(i + 1, "days").hours(15).minute(0);
     console.log(forecastDate);
@@ -184,7 +184,7 @@ for (let j = 0; j < savedWeather.length ; j++){
 
   }
 }
-
+ 
 
 // $(".date0").text("<h1>" + date.format(" DD MMM Y"));
 // $(".temperature0").text("Humidity: " + current.main.humidity);
